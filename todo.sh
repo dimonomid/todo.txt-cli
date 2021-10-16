@@ -1063,7 +1063,7 @@ fi
 
 ## Only run if $action isn't found in .todo.actions.d
 case $action in
-"add" | "a")
+"add" | "a" | "aa" | "ab" | "ac" | "ad" | "ae")
     if [[ -z "$2" && $TODOTXT_FORCE = 0 ]]; then
         echo -n "Add: "
         read -e -r input
@@ -1072,6 +1072,19 @@ case $action in
         shift
         input=$*
     fi
+
+    if [[ "$action" == "aa" ]]; then
+      TODOTXT_PRIORITY_ON_ADD=A
+    elif [[ "$action" == "ab" ]]; then
+      TODOTXT_PRIORITY_ON_ADD=B
+    elif [[ "$action" == "ac" ]]; then
+      TODOTXT_PRIORITY_ON_ADD=C
+    elif [[ "$action" == "ad" ]]; then
+      TODOTXT_PRIORITY_ON_ADD=D
+    elif [[ "$action" == "ae" ]]; then
+      TODOTXT_PRIORITY_ON_ADD=E
+    fi
+
     _addto "$TODO_FILE" "$input"
     ;;
 
